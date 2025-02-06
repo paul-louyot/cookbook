@@ -1,2 +1,6 @@
 .vitepress/cache/deps
 node_modules
+
+# Local Netlify folder
+.netlify
+.vitepress/dist
