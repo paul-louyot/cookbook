@@ -3,7 +3,7 @@
 ## Ingrédients
 
 - 1 chou fleur, en morceaux
-- 1 oignons, émincé
+- 1 oignon, émincé
 - 5 gousse d’ail, haché
 - 50g de ghee ( ou beurre )
 - 2 boite de lait de coco
@@ -18,7 +18,7 @@
 - 1 c. à c cumin moulue
 - 1 c. à c feuille de funugrec sécher
 - sel / poivre
-- Coriandre fraîche ( dressage )
+- Coriandre fraîche (dressage)
 
 ## Préparation
 
