@@ -34,6 +34,8 @@ export default {
       const title = recipe.metadata.title ? recipe.metadata.title : humanize(parsedPath.name)
 
       return {
+        file,
+        currentDir,
         url,
         title,
         parsedPath,

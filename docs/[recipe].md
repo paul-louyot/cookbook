@@ -1,2 +1,5 @@
+
+<pre>
 {{$params}}
+</pre>
 

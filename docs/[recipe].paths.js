@@ -2,19 +2,26 @@
 // https://vitepress.dev/guide/routing#dynamic-routes
 
 // TODO: get absolute paths and reuse logic
+import { fileURLToPath } from 'url';
 
 import fs from 'fs'
+import path from 'path';
+// __dirname
 
 export default {
   paths() {
+    const scanDir = path.join(__dirname, 'recipes');
 
-    const paths = fs.readdirSync('docs/recipes')
-    console.log(paths)
+    return fs.readdirSync(scanDir).map(file => {
+      const filepath = path.join(scanDir, file)
+      const parsedPath = path.parse(filepath);
+      const recipe = parsedPath.name;
+      return {
+        params: {
+          recipe,
+        }
+      }
+    });
 
-    return [
-      { params: { recipe: 'foo', path: paths }},
-
-      { params: { recipe: 'bar' }}
-    ]
   }
 }
