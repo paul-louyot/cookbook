@@ -4,7 +4,7 @@ layout: home
 
 hero:
   image:
-    src: /paul.jpg
+    src: ./paul.jpg
     alt: Paul
 
   name: "Paul's recipes"
