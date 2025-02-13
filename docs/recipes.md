@@ -2,9 +2,9 @@
 import { data as recipes } from './recipes.data.js'
 </script>
 
-<pre>
+<!-- <pre>
 {{recipes}}
-</pre>
+</pre> -->
 
 <ul>
   <li v-for="recipe of recipes">
