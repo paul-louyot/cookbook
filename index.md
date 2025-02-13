@@ -3,7 +3,14 @@
 layout: home
 
 hero:
-  # name: "Paul's recipes"
+  image:
+    src: /paul.jpg
+    alt: Paul
+
+  name: "Paul's recipes"
+  text: ...
+  tagline: 👨🏻‍🍳🔪🌱
+
   # actions:
   #   - theme: brand
   #     text: Markdown Examples
@@ -21,13 +28,11 @@ hero:
 #     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---
 
-![Paul](./paul.jpg)
-
 - [Butter chou-fleur](/butter-chou-fleur.md)
 
 <style module>
-img {
+/* img {
   margin: auto;
   max-height: 300px;
-}
+} */
 </style>
