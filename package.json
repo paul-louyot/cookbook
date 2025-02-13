@@ -1,11 +1,15 @@
 {
   "scripts": {
-    "dev": "vitepress dev .",
-    "docs:dev": "vitepress dev .",
-    "docs:build": "vitepress build .",
-    "docs:preview": "vitepress preview ."
+    "dev": "vitepress dev docs",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
+  "type": "module",
   "devDependencies": {
     "vitepress": "^1.6.3"
+  },
+  "dependencies": {
+    "@cooklang/cooklang-ts": "^1.2.7"
   }
 }

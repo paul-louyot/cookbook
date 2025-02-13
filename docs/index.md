@@ -28,7 +28,6 @@ hero:
 #     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---
 
-- [Butter chou-fleur](/butter-chou-fleur.md)
 
 <style module>
 /* img {
