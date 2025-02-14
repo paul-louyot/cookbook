@@ -11,10 +11,10 @@ hero:
   text: ...
   tagline: 👨🏻‍🍳🔪🌱
 
-  # actions:
-  #   - theme: brand
-  #     text: Markdown Examples
-  #     link: /markdown-examples
+  actions:
+    - theme: brand
+      text: Browse recipes
+      link: /recipes
   #   - theme: alt
   #     text: API Examples
   #     link: /api-examples
@@ -28,7 +28,6 @@ hero:
 #     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---
 
-- [Butter chou-fleur](/butter-chou-fleur.md)
 
 <style module>
 /* img {
