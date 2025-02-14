@@ -6,6 +6,8 @@ import { data as recipes } from './recipes.data.js'
 {{recipes}}
 </pre> -->
 
+# Recipes
+
 <ul>
   <li v-for="recipe of recipes">
     <a :href="recipe.url">{{ recipe.title }}</a>
