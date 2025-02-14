@@ -4,7 +4,7 @@ import fs from 'node:fs'
 // import fs from 'fs'
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { Recipe, Parser, getImageURL } from '@cooklang/cooklang-ts';
+import { Recipe } from '@cooklang/cooklang-ts';
 
 function humanize(str) {
   return str
