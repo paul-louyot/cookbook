@@ -8,12 +8,10 @@ export const cooklangToMD = (source, slug) => {
     : slugToTitle(slug);
 
   const ingredients = recipe.ingredients
-    .map(({ name, units, quantity }) => {
-      if (!units) {
-        return `- ${quantity} ${name}`;
-      }
-      return `- ${quantity} ${units} ${getSeparator(name, recipe)}${name}`;
+    .map(({ name, quantity, units }) => {
+      return formatIngredient(name, quantity, units, recipe.metadata.locale);
     })
+    .map((string) => `- ${string}`)
     .join("\n");
 
   // remove metadata
@@ -26,12 +24,8 @@ export const cooklangToMD = (source, slug) => {
     .replace(/~\{(\d+\/?\d*)%([^}]*)\}/g, "$1 $2")
     .replace(
       /@(.*?)\{(\d+\/?\d*)%?([^}]*)\}/g,
-      // this method should be provided by the user?
       (match, item, quantity, unit) => {
-        if (!unit) {
-          return `${quantity} ${item}`;
-        }
-        return `${quantity} ${unit} ${getSeparator(item, recipe)}${item}`;
+        return formatIngredient(item, quantity, unit, recipe.metadata.locale);
       },
     )
     .replace(/#(.*?)\{\}/g, "$1");
@@ -52,8 +46,16 @@ export const slugToTitle = (str) => {
   return str.replace(/-/g, " ").replace(/^\w/, (c) => c.toUpperCase()); // Capitalize the first letter of the first word
 };
 
-const getSeparator = (name, recipe) => {
-  if (recipe.metadata.locale === "fr") {
+const formatIngredient = (name, quantity, unit, locale) => {
+  if (!unit) {
+    return `${quantity} ${name}`;
+  }
+  return `${quantity} ${unit} ${getSeparator(name, locale)}${name}`;
+};
+
+const getSeparator = (name, locale) => {
+  // TODO: store this logic in a locale file
+  if (locale === "fr") {
     let separator = "de ";
     if (/^[aeiouhAEIOUH]/.test(name)) separator = "d'";
     return separator;
