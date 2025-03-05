@@ -14,6 +14,7 @@ export default {
       const recipeSlug = parsedPath.name;
       const source = fs.readFileSync(filepath, "utf-8");
       const content = cooklangToMD(source, recipeSlug);
+      // idea: use same approach to expose a ingredients string and a steps string
       return {
         params: {
           recipeSlug,
