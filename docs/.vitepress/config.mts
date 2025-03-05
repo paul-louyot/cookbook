@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitepress'
+import { defineConfig } from "vitepress";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -7,14 +7,13 @@ export default defineConfig({
 
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    search: {
-      provider: 'local'
-    },
-    // nav: [
-    //   { text: 'Home', link: '/' },
-    //   { text: 'Examples', link: '/markdown-examples' }
-    // ],
-
+    // search: {
+    //   provider: 'local'
+    // },
+    nav: [
+      { text: "Home", link: "/" },
+      { text: "Recipes", link: "/recipes" },
+    ],
     // sidebar: [
     //   {
     //     text: 'Examples',
@@ -24,9 +23,5 @@ export default defineConfig({
     //     ]
     //   }
     // ],
-
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
-    ]
-  }
-})
+  },
+});
