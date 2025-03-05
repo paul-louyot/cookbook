@@ -65,10 +65,14 @@ export const slugToTitle = (str) => {
 };
 
 const formatIngredient = (name, quantity, unit, locale) => {
+  const formattedQuantity = /^\d+(\.\d{3,})$/.test(quantity)
+    ? parseFloat(quantity).toFixed(2)
+    : quantity;
+
   if (!unit) {
-    return `${quantity} ${name}`;
+    return `${formattedQuantity} ${name}`;
   }
-  return `${quantity} ${unit} ${getSeparator(name, locale)}${name}`;
+  return `${formattedQuantity} ${unit} ${getSeparator(name, locale)}${name}`;
 };
 
 const getSeparator = (name, locale) => {
