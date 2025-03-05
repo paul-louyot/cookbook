@@ -2,9 +2,6 @@
 import { data as recipes } from './recipes.data.js'
 </script>
 
-<!-- <pre>
-{{recipes}}
-</pre> -->
 
 # Recipes
 
