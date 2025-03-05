@@ -58,14 +58,13 @@ export const slugToTitle = (str) => {
 
 export const toPlainText = (str, locale = "en") => {
   return str
-    .replace(/([@#~])([^{}]*)\{([^}]*)\}/g, (match, symbol, word, content) => {
-      if (symbol === "@") {
-        if (!content) return word;
-        const [amount, unit] = content.split("%");
-        return unit ? `${amount} ${unit} of ${word}` : `${amount} ${word}`;
-      } else if (symbol === "#") {
-        return content ? `${content} ${word}` : word;
-      } else if (symbol === "~") {
+    .replace(/([@])([^{}]*)\{([^}]*)\}/g, (match, symbol, word, content) => {
+      if (!content) return word;
+      const [amount, unit] = content.split("%");
+      return unit ? `${amount} ${unit} of ${word}` : `${amount} ${word}`;
+    })
+    .replace(/([~])([^{}]*)\{([^}]*)\}/g, (match, symbol, word, content) => {
+      if (symbol === "~") {
         const [amount, unit] = content.split("%");
         return unit ? `${amount} ${unit}` : `${amount} ${word}`;
       }
