@@ -2,7 +2,11 @@ fr:
   titles:
     ingredients: Ingrédients
     steps: Étapes
+  metadata:
+    source: "source :"
 en:
   titles:
     ingredients: Ingredients
     steps: Steps
+  metadata:
+    source: "source:"

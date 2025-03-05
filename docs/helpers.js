@@ -6,6 +6,7 @@ import yaml from "js-yaml";
 export const cooklangToMD = (source, slug) => {
   const recipe = new Recipe(source);
   const locale = recipe.metadata.locale || "en";
+  const url = recipe.metadata.url;
 
   const title = recipe.metadata?.title
     ? recipe.metadata.title
@@ -28,7 +29,7 @@ export const cooklangToMD = (source, slug) => {
     .filter((line) => !line.trim().startsWith(">>"))
     .join("\n");
 
-  const steps = text
+  const body = text
     .replace(/~\{(\d+\/?\d*)%([^}]*)\}/g, "$1 $2")
     .replace(
       /@(.*?)\{(\d+\/?\d*)%?([^}]*)\}/g,
@@ -37,6 +38,13 @@ export const cooklangToMD = (source, slug) => {
       },
     )
     .replace(/#(.*?)\{\}/g, "$1");
+
+  let additionalInfos = "";
+  if (url) {
+    additionalInfos += "---\n\n";
+    additionalInfos += getLocalizedString(`${locale}.metadata.source`);
+    additionalInfos += ` [${url}](${url})`;
+  }
 
   return `
 # ${title}
@@ -47,7 +55,9 @@ ${ingredients}
 
 ## ${subtitle2}
 
-${steps}`;
+${body}
+${additionalInfos}
+`;
 };
 
 export const slugToTitle = (str) => {
