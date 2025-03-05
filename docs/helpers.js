@@ -29,15 +29,7 @@ export const cooklangToMD = (source, slug) => {
     .filter((line) => !line.trim().startsWith(">>"))
     .join("\n");
 
-  const body = text
-    .replace(/~\{(\d+\/?\d*)%([^}]*)\}/g, "$1 $2")
-    .replace(
-      /@(.*?)\{(\d+\/?\d*)%?([^}]*)\}/g,
-      (match, item, quantity, unit) => {
-        return formatIngredient(item, quantity, unit, recipe.metadata.locale);
-      },
-    )
-    .replace(/#(.*?)\{\}/g, "$1");
+  const body = toPlainText(text, recipe.metadata.locale);
 
   let additionalInfos = "";
   if (url) {
@@ -62,6 +54,35 @@ ${additionalInfos}
 
 export const slugToTitle = (str) => {
   return str.replace(/-/g, " ").replace(/^\w/, (c) => c.toUpperCase()); // Capitalize the first letter of the first word
+};
+
+export const toPlainText = (str, locale = "en") => {
+  return str
+    .replace(/([@#~])([^{}]*)\{([^}]*)\}/g, (match, symbol, word, content) => {
+      if (symbol === "@") {
+        if (!content) return word;
+        const [amount, unit] = content.split("%");
+        return unit ? `${amount} ${unit} of ${word}` : `${amount} ${word}`;
+      } else if (symbol === "#") {
+        return content ? `${content} ${word}` : word;
+      } else if (symbol === "~") {
+        const [amount, unit] = content.split("%");
+        return unit ? `${amount} ${unit}` : `${amount} ${word}`;
+      }
+      return match;
+    })
+    .replace(/([@#~])([^{}]+)\{\}/g, "$2");
+
+  return str
+    .replace(/~\{(\d+\/?\d*)%([^}]*)\}/g, "$1 $2")
+    .replace(/@(.*?)\{\}/g, "$1")
+    .replace(/#(.*?)\{\}/g, "$1")
+    .replace(
+      /@(.*?)\{(\d+\/?\d*)%?([^}]*)\}/g,
+      (match, item, quantity, unit) => {
+        return formatIngredient(item, quantity, unit, locale);
+      },
+    );
 };
 
 const formatIngredient = (name, quantity, unit, locale) => {
