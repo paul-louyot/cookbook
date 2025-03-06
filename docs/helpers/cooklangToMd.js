@@ -18,13 +18,17 @@ export const cooklangToMd = (paragraph, locale) => {
 };
 
 const hasCooklangMarkup = (str) => {
-  return /@\S+/.test(str) || /#\S+/.test(str) || /~\S+/.test(str);
+  return (
+    /@(?![\s@{}])/.test(str) ||
+    /#(?![\s#{}])/.test(str) ||
+    /~(?![\s~{}])/.test(str)
+  );
 };
 
 const uncooklangify = (str, locale) => {
-  const hasIngredient = /@\S+/.test(str);
-  const hasCookware = /#\S+/.test(str);
-  const hasTimer = /~\S+/.test(str);
+  const hasIngredient = /@(?![\s@{}])/.test(str);
+  const hasCookware = /#(?![\s#{}])/.test(str);
+  const hasTimer = /~(?![\s~{}])/.test(str);
   if (!hasIngredient && !hasCookware && !hasTimer) {
     return str;
   }
