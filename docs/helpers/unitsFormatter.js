@@ -10,7 +10,7 @@ export default {
 
     let separator = "de ";
     if (/^[aeiouhAEIOUH]/.test(ingredient)) separator = "d'";
-    return `${formattedQuantity} ${units} ${separator}${ingredient}`;
+    return `${formattedQuantity}&nbsp;${units} ${separator}${ingredient}`;
   },
   en(ingredient, quantity, units) {
     const formattedQuantity = /^\d+(\.\d{3,})$/.test(quantity)
@@ -21,6 +21,6 @@ export default {
       return `${formattedQuantity} ${ingredient}`;
     }
 
-    return `${formattedQuantity} ${units} of ${ingredient}`;
+    return `${formattedQuantity}&nbsp;${units} of ${ingredient}`;
   },
 };

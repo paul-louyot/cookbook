@@ -1,6 +1,7 @@
 import { Recipe } from "@cooklang/cooklang-ts";
 import { getLocalizedString } from "./getLocalizedString";
 import { cooklangToMd } from "./cooklangToMd";
+import { slugToTitle } from "./slugToTitle";
 import unitsFormatter from "./unitsFormatter";
 
 export const createRecipeContent = (source, slug) => {
@@ -37,7 +38,7 @@ export const createRecipeContent = (source, slug) => {
 
   let additionalInfos = "";
   if (url) {
-    additionalInfos += "---\n\n";
+    additionalInfos += "## \n\n";
     additionalInfos += getLocalizedString(`${locale}.metadata.source`);
     additionalInfos += ` [${url}](${url})`;
   }
@@ -54,8 +55,4 @@ ${ingredients}
 ${body}
 ${additionalInfos}
 `;
-};
-
-export const slugToTitle = (str) => {
-  return str.replace(/-/g, " ").replace(/^\w/, (c) => c.toUpperCase()); // Capitalize the first letter of the first word
 };

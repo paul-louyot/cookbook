@@ -3,15 +3,21 @@
 
 import { cooklangToMd } from "./helpers/cooklangToMd.js";
 
-const test = (str) => {
-  console.log(`"${str} => "${cooklangToMd(str)}"`);
+const test = (cooklang, markdown) => {
+  const result = cooklangToMd(cooklang, "en");
+  if (result == markdown) {
+    console.log("✅", cooklang);
+    return;
+  }
+  console.log("❌", cooklang);
+  throw new Error(`\nexpected "${markdown}"\ngot      "${result}"`);
 };
 
-test("@ingrédient1 @ingrédient2 @ingrédient 3{} @ingrédient4");
-test("@oignon{1}");
-test("@eau{150%mL}");
-test("une #casserole");
-test("une #casserole{}");
-test("# markdown title");
-test("# markdown title and #cookware");
-test("Bake for ~{25%minutes}.");
+test("@ingredient", "ingredient");
+test("@ingredient{1}", "1 ingredient");
+test("@ingredient{quantity%units}", "quantity units of ingredient");
+test("a #pot", "a pot");
+test("a #pot{}", "a pot");
+test("# markdown title", "# markdown title");
+test("# markdown title and #cookware", "# markdown title and cookware");
+test("Bake for ~{25%minutes}", "Bake for 25 minutes");

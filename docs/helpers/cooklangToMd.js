@@ -19,16 +19,14 @@ export const cooklangToMd = (paragraph, locale) => {
 
 const hasCooklangMarkup = (str) => {
   return (
-    /@(?![\s@{}])/.test(str) ||
-    /#(?![\s#{}])/.test(str) ||
-    /~(?![\s~{}])/.test(str)
+    /@(?![\s@{}])/.test(str) || /#(?![\s#{}])/.test(str) || /~\S+/.test(str)
   );
 };
 
 const uncooklangify = (str, locale) => {
   const hasIngredient = /@(?![\s@{}])/.test(str);
   const hasCookware = /#(?![\s#{}])/.test(str);
-  const hasTimer = /~(?![\s~{}])/.test(str);
+  const hasTimer = /~\S+/.test(str);
   if (!hasIngredient && !hasCookware && !hasTimer) {
     return str;
   }
@@ -49,7 +47,9 @@ const uncooklangify = (str, locale) => {
         const [quantity, units] = inner.split("%");
         const formatter = unitsFormatter[locale];
         if (!formatter) {
-          throw new Error(`Please specify a formatter for locale ${locale}`);
+          throw new Error(
+            `Please specify a units formatter for locale ${locale}`,
+          );
         }
         newValue = formatter(ingredient, quantity, units);
       } else {
@@ -61,8 +61,8 @@ const uncooklangify = (str, locale) => {
       searchValue = "@" + substring;
     }
   } else if (hasCookware) {
-    substring = str.match(/#\S.*/g)[0];
-    substring = str.split("#")[1];
+    substring = str.match(/#(?![\s#{}]).*/g)[0];
+    substring = substring.split("#")[1];
     if (/\{.*\}/.test(substring)) {
       substring = substring.slice(0, substring.indexOf("}") + 1);
       const cookware = substring.slice(0, substring.indexOf("{"));
@@ -84,10 +84,10 @@ const uncooklangify = (str, locale) => {
         const [duration, units] = inner.split("%");
         newValue = [duration, units].join(" ");
       } else {
-        throw new Error(`timer definition error in "${substring}"`);
+        throw new Error(`timer format error in "${substring}"`);
       }
     } else {
-      throw new Error(`timer definition error in "${substring}"`);
+      throw new Error(`timer format error in "${substring}"`);
     }
   }
 
@@ -95,8 +95,15 @@ const uncooklangify = (str, locale) => {
     result = str.replace(searchValue, newValue);
   }
   if (!result) {
-    console.log({ substring, searchValue, newValue });
-    throw new Error("empty result");
+    throw new Error("Cooklang markup could not be removed");
+    console.log({
+      hasIngredient,
+      hasCookware,
+      hasTimer,
+      substring,
+      searchValue,
+      newValue,
+    });
   }
   return result;
 };
