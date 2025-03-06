@@ -15,7 +15,7 @@ export const createRecipeContent = (source, slug) => {
 
   const ingredients = recipe.ingredients
     .map(({ name, quantity, units }) => {
-      return formatIngredient(name, quantity, units, recipe.metadata.locale);
+      return formatIngredient(name, quantity, units, locale);
     })
     .map((string) => `- ${string}`)
     .join("\n");
@@ -28,7 +28,7 @@ export const createRecipeContent = (source, slug) => {
     .filter((line) => !line.trim().startsWith(">>"))
     .join("\n");
 
-  const body = cooklangToMd(text, recipe.metadata.locale);
+  const body = cooklangToMd(text, locale);
 
   let additionalInfos = "";
   if (url) {
