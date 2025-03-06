@@ -2,7 +2,7 @@
 
 import fs from "fs";
 import path from "path";
-import { cooklangToMD } from "./helpers";
+import { createRecipeContent } from "./helpers/createRecipeContent";
 
 export default {
   paths() {
@@ -13,7 +13,7 @@ export default {
       const parsedPath = path.parse(filepath);
       const recipeSlug = parsedPath.name;
       const source = fs.readFileSync(filepath, "utf-8");
-      const content = cooklangToMD(source, recipeSlug);
+      const content = createRecipeContent(source, recipeSlug);
       // idea: use same approach to expose a ingredients string and a steps string
       return {
         params: {

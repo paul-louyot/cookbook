@@ -4,7 +4,7 @@ import fs from "node:fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { Recipe } from "@cooklang/cooklang-ts";
-import { slugToTitle } from "./helpers";
+import { slugToTitle } from "./helpers/slugToTitle";
 
 export default {
   watch: ["./recipes/*.cook"],
