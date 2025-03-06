@@ -1,13 +1,10 @@
-// apply method until nothing is found
-// method to find and calls an other method that replaces
-
-const toPlainText = (paragraph) => {
+export const cooklangToMd = (paragraph, locale) => {
   return paragraph
     .split("\n")
     .map((line) => {
       let temp = line;
       while (hasCooklangMarkup(temp)) {
-        temp = uncooklangify(temp);
+        temp = uncooklangify(temp, locale);
       }
       return temp;
     })
@@ -15,23 +12,24 @@ const toPlainText = (paragraph) => {
 };
 
 const hasCooklangMarkup = (str) => {
-  return str.includes("@") || /#\S+/.test(str) || str.includes("~");
+  return /@\S+/.test(str) || /#\S+/.test(str) || /~\S+/.test(str);
 };
 
-const uncooklangify = (str) => {
-  const hasIngredient = str.includes("@");
+const uncooklangify = (str, locale) => {
+  const hasIngredient = /@\S+/.test(str);
   const hasCookware = /#\S+/.test(str);
-  const hasTimer = str.includes("~");
+  const hasTimer = /~\S+/.test(str);
   if (!hasIngredient && !hasCookware && !hasTimer) {
     return str;
   }
 
-  let result = str;
-  let substring = str;
-  let searchValue;
-  let newValue;
+  let result;
+  let substring;
+  let searchValue = null;
+  let newValue = null;
 
   if (hasIngredient) {
+    substring = str.match(/@\S.*/g)[0];
     substring = substring.split("@")[1];
     if (/\{.*\}/.test(substring)) {
       substring = substring.slice(0, substring.indexOf("}") + 1);
@@ -50,7 +48,8 @@ const uncooklangify = (str) => {
       searchValue = "@" + substring;
     }
   } else if (hasCookware) {
-    substring = substring.split("#")[1];
+    substring = str.match(/#\S.*/g)[0];
+    substring = str.split("#")[1];
     if (/\{.*\}/.test(substring)) {
       substring = substring.slice(0, substring.indexOf("}") + 1);
       const cookware = substring.slice(0, substring.indexOf("{"));
@@ -62,6 +61,7 @@ const uncooklangify = (str) => {
       searchValue = "#" + cookware;
     }
   } else if (hasTimer) {
+    substring = str.match(/~\S.*/g)[0];
     substring = substring.split("~")[1];
     if (/\{.*\}/.test(substring)) {
       substring = substring.slice(0, substring.indexOf("}") + 1);
@@ -78,20 +78,12 @@ const uncooklangify = (str) => {
     }
   }
 
-  if (searchValue && newValue) {
-    result = result.replace(searchValue, newValue);
+  if (searchValue !== null && newValue !== null) {
+    result = str.replace(searchValue, newValue);
+  }
+  if (!result) {
+    console.log({ substring, searchValue, newValue });
+    throw new Error("empty result");
   }
   return result;
 };
-
-const test = (str) => {
-  console.log(`"${str} => "${toPlainText(str)}"`);
-};
-
-test("@ingrédient1 @ingrédient2 @ingrédient 3{} @ingrédient4");
-test("@oignon{1}");
-test("@eau{150%mL}");
-test("une #casserole");
-test("une #casserole{}");
-test("Bake for ~{25%minutes}.");
-test("# markdown title");

@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import yaml from "js-yaml";
 
-export const cooklangToMD = (source, slug) => {
+export const createRecipeContent = (source, slug) => {
   const recipe = new Recipe(source);
   const locale = recipe.metadata.locale || "en";
   const url = recipe.metadata.url;
