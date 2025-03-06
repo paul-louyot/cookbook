@@ -1,13 +1,17 @@
 // apply method until nothing is found
 // method to find and calls an other method that replaces
 
-const toPlainText = (str) => {
-  let result = str;
-  // while has cooklang markup
-  while (hasCooklangMarkup(result)) {
-    result = uncooklangify(result);
-  }
-  return result;
+const toPlainText = (paragraph) => {
+  return paragraph
+    .split("\n")
+    .map((line) => {
+      let temp = line;
+      while (hasCooklangMarkup(temp)) {
+        temp = uncooklangify(temp);
+      }
+      return temp;
+    })
+    .join("\n");
 };
 
 const hasCooklangMarkup = (str) => {
