@@ -38,6 +38,7 @@ const uncooklangify = (str, locale) => {
       if (inner.includes("%")) {
         const [quantity, units] = inner.split("%");
         // TODO: use a custom method to format this
+        // load this from a js object stored in a dedicated file
         newValue = [quantity, units, ingredient].join(" ");
       } else {
         newValue = inner + " " + ingredient;
