@@ -30,10 +30,8 @@ const uncooklangify = (str) => {
   let substring = str;
   let searchValue;
   let newValue;
-  const lines = str.split("\n");
 
   if (hasIngredient) {
-    substring = lines.find((line) => line.includes("@"));
     substring = substring.split("@")[1];
     if (/\{.*\}/.test(substring)) {
       substring = substring.slice(0, substring.indexOf("}") + 1);
@@ -52,7 +50,6 @@ const uncooklangify = (str) => {
       searchValue = "@" + substring;
     }
   } else if (hasCookware) {
-    substring = lines.find((line) => /#\S+/.test(line));
     substring = substring.split("#")[1];
     if (/\{.*\}/.test(substring)) {
       substring = substring.slice(0, substring.indexOf("}") + 1);
@@ -65,7 +62,6 @@ const uncooklangify = (str) => {
       searchValue = "#" + cookware;
     }
   } else if (hasTimer) {
-    substring = lines.find((line) => line.includes("~"));
     substring = substring.split("~")[1];
     if (/\{.*\}/.test(substring)) {
       substring = substring.slice(0, substring.indexOf("}") + 1);
