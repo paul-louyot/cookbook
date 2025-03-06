@@ -1,11 +1,16 @@
 import { Recipe } from "@cooklang/cooklang-ts";
 import { getLocalizedString } from "./getLocalizedString";
 import { cooklangToMd } from "./cooklangToMd";
+import unitsFormatter from "./unitsFormatter";
 
 export const createRecipeContent = (source, slug) => {
   const recipe = new Recipe(source);
   const locale = recipe.metadata.locale || "en";
   const url = recipe.metadata.url;
+  const formatter = unitsFormatter[locale];
+  if (!formatter) {
+    throw new Error(`Please specify a formatter for locale ${locale}`);
+  }
 
   const title = recipe.metadata?.title
     ? recipe.metadata.title
@@ -15,7 +20,7 @@ export const createRecipeContent = (source, slug) => {
 
   const ingredients = recipe.ingredients
     .map(({ name, quantity, units }) => {
-      return formatIngredient(name, quantity, units, locale);
+      return formatter(name, quantity, units);
     })
     .map((string) => `- ${string}`)
     .join("\n");
@@ -53,25 +58,4 @@ ${additionalInfos}
 
 export const slugToTitle = (str) => {
   return str.replace(/-/g, " ").replace(/^\w/, (c) => c.toUpperCase()); // Capitalize the first letter of the first word
-};
-
-const formatIngredient = (name, quantity, unit, locale) => {
-  const formattedQuantity = /^\d+(\.\d{3,})$/.test(quantity)
-    ? parseFloat(quantity).toFixed(2)
-    : quantity;
-
-  if (!unit) {
-    return `${formattedQuantity} ${name}`;
-  }
-  return `${formattedQuantity} ${unit} ${getSeparator(name, locale)}${name}`;
-};
-
-const getSeparator = (name, locale) => {
-  // TODO: store this logic in a locale file
-  if (locale === "fr") {
-    let separator = "de ";
-    if (/^[aeiouhAEIOUH]/.test(name)) separator = "d'";
-    return separator;
-  }
-  return "of ";
 };

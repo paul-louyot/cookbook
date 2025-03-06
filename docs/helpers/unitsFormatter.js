@@ -1,10 +1,26 @@
 export default {
   fr(ingredient, quantity, units) {
+    const formattedQuantity = /^\d+(\.\d{3,})$/.test(quantity)
+      ? parseFloat(quantity).toFixed(2)
+      : quantity;
+
+    if (!units) {
+      return `${formattedQuantity} ${ingredient}`;
+    }
+
     let separator = "de ";
     if (/^[aeiouhAEIOUH]/.test(ingredient)) separator = "d'";
-    return `${quantity} ${units} ${separator}${ingredient}`;
+    return `${formattedQuantity} ${units} ${separator}${ingredient}`;
   },
   en(ingredient, quantity, units) {
-    return `${quantity} ${units} of ${ingredient}`;
+    const formattedQuantity = /^\d+(\.\d{3,})$/.test(quantity)
+      ? parseFloat(quantity).toFixed(2)
+      : quantity;
+
+    if (!units) {
+      return `${formattedQuantity} ${ingredient}`;
+    }
+
+    return `${formattedQuantity} ${units} of ${ingredient}`;
   },
 };

@@ -43,7 +43,11 @@ const uncooklangify = (str, locale) => {
       searchValue = "@" + substring;
       if (inner.includes("%")) {
         const [quantity, units] = inner.split("%");
-        newValue = unitsFormatter[locale](ingredient, quantity, units);
+        const formatter = unitsFormatter[locale];
+        if (!formatter) {
+          throw new Error(`Please specify a formatter for locale ${locale}`);
+        }
+        newValue = formatter(ingredient, quantity, units);
       } else {
         newValue = inner + " " + ingredient;
       }
