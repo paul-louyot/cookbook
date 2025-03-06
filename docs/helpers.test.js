@@ -11,13 +11,12 @@ const toPlainText = (str) => {
 };
 
 const hasCooklangMarkup = (str) => {
-  // TODO: ignore markdown titles
-  return str.includes("@") || str.includes("#") || str.includes("~");
+  return str.includes("@") || /#\S+/.test(str) || str.includes("~");
 };
 
 const uncooklangify = (str) => {
   const hasIngredient = str.includes("@");
-  const hasCookware = str.includes("#");
+  const hasCookware = /#\S+/.test(str);
   const hasTimer = str.includes("~");
   if (!hasIngredient && !hasCookware && !hasTimer) {
     return str;
@@ -49,7 +48,7 @@ const uncooklangify = (str) => {
       searchValue = "@" + substring;
     }
   } else if (hasCookware) {
-    substring = lines.find((line) => line.includes("#"));
+    substring = lines.find((line) => /#\S+/.test(line));
     substring = substring.split("#")[1];
     if (/\{.*\}/.test(substring)) {
       substring = substring.slice(0, substring.indexOf("}") + 1);
@@ -95,3 +94,4 @@ test("@eau{150%mL}");
 test("une #casserole");
 test("une #casserole{}");
 test("Bake for ~{25%minutes}.");
+test("# markdown title");
