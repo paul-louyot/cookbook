@@ -95,8 +95,7 @@ const uncooklangify = (str, locale) => {
     result = str.replace(searchValue, newValue);
   }
   if (!result) {
-    throw new Error("Cooklang markup could not be removed");
-    console.log({
+    console.error({
       hasIngredient,
       hasCookware,
       hasTimer,
@@ -104,6 +103,7 @@ const uncooklangify = (str, locale) => {
       searchValue,
       newValue,
     });
+    throw new Error("Cooklang markup could not be removed");
   }
   return result;
 };

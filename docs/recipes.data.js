@@ -15,7 +15,7 @@ export default {
       );
       const relativePath = path.relative(currentDir, file); // Get path relative to "docs"
       const parsedPath = path.parse(relativePath); // Parse the file path
-      const url = parsedPath.name;
+      const url = parsedPath.name; // this will not work for files inside a folder
 
       const source = fs.readFileSync(file, "utf-8");
       const recipe = new Recipe(source);

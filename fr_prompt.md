@@ -58,24 +58,3 @@ Séparez chaque étape avec deux nouvelles lignes.
 
 applique ces instructions au texte suivant
 
-Crème glacée aux cookies
-
-Une crème glacée onctueuse à souhait est tout à fait réalisable en version 100% végétale. Ici, c'est le mélange crème de coco et crème de soja qui permet à la fois un goût léger et une onctuosité parfaite. Pour la touche gourmande, des noix de macadamia, pépites de chocolat ou morceaux de caramel peuvent se substituer aux cookies... ou s'ajouter!
-
-000000000000000000000
-
-00000000000000000
-
-POUR 4 PERSONNES
-
-190 g de crème de coco (une boite de lait de coco)
-
-• 410 g de crème de soja 85 g de sucre de canne blond
-
-• 85 g de cookies concassés
-
-0000000000
-
-000000000000
-
-Placer la boite de lait de coco au frais. Prélever la crème de coco et la mélanger au fouet dans un cul de poule avec la crème de soja et le sucre. Ajouter les éclats de cookies. Si vous avez une sorbetière, suivez les instructions fournies avec votre appareil pour réaliser cette crème glacée. Sinon, mettre la préparation pendant 2 h au congélateur. Mélanger et laisser prendre de nouveau 1 h. Verser dans le récipient de votre choix et placer au congélateur pour 2 h minimum avant de servir. Sortir la glace un peu avant de servir, et utiliser une boule à glace trempée dans de l'eau chaude pour réaliser de belles formes. À consommer dans les 5 jours.
