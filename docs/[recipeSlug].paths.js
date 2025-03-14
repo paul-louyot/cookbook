@@ -1,25 +1,20 @@
-// https://vitepress.dev/guide/routing#dynamic-routes
+import { pathsLoader } from "vitepress-plugin-cooklang";
 
-import fs from "fs";
-import path from "path";
-import { createRecipeContent } from "./helpers/createRecipeContent";
+const transformPath = (path) => {
+  return path.replace(/^docs\//, "").replace(/\.cook$/, "");
+};
 
 export default {
-  paths() {
-    const scanDir = path.join(__dirname, "recipes");
-
-    return fs.readdirSync(scanDir).map((file) => {
-      const filepath = path.join(scanDir, file);
-      const parsedPath = path.parse(filepath);
-      const recipeSlug = parsedPath.name;
-      const source = fs.readFileSync(filepath, "utf-8");
-      const content = createRecipeContent(source, recipeSlug);
-      // idea: use same approach to expose a ingredients string and a steps string
+  async paths() {
+    const data = await pathsLoader("**/*.cook", transformPath);
+    return data.map(({ filePath, source, metadata, recipe }) => {
       return {
         params: {
-          recipeSlug,
+          recipeSlug: filePath,
+          source,
+          metadata,
+          recipe,
         },
-        content,
       };
     });
   },

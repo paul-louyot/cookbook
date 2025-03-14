@@ -7,10 +7,7 @@
   },
   "type": "module",
   "devDependencies": {
-    "vitepress": "^1.6.3"
-  },
-  "dependencies": {
-    "@cooklang/cooklang-ts": "^1.2.7",
-    "js-yaml": "^4.1.0"
+    "vitepress": "^1.6.3",
+    "vitepress-plugin-cooklang": "^0.0.3"
   }
 }
