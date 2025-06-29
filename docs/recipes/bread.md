@@ -5,6 +5,7 @@ title: Bread
 
 # Bread
 
+
 ## Ingredients
 
 - 1&nbsp;cup sunflower seeds
@@ -18,6 +19,7 @@ title: Bread
 - 1&nbsp;Tbsp. maple syrup
 - 3&nbsp;Tbsp. melted coconut oil
 - 1 1/2&nbsp;cups water
+
 
 ## Steps
 
@@ -34,3 +36,4 @@ Place silicon loaf pan in the oven on the middle rack, and bake for 20&nbsp;minu
 Let cool completely before slicing (difficult, but important).
 
 Store bread in a tightly sealed container for up to 5&nbsp;days. Freezes well too – slice before freezing for quick and easy toast!
+

@@ -6,6 +6,7 @@ servings: 8
 
 # Gaufres
 
+
 ## Ingredients
 
 - 200&nbsp;g farine de blé T65
@@ -14,6 +15,7 @@ servings: 8
 - 80&nbsp;ml huile neutre supportant la cuisson
 - 150&nbsp;ml lait d’avoine
 - 110&nbsp;ml bière ou kombucha
+
 
 ## Steps
 
@@ -26,3 +28,4 @@ Laisser reposer 1&nbsp;heure minimum.
 Faire cuire dans le gaufrier selon les instructions du fabricant, en position « croustillant » si l’appareil le permet.
 
 Déguster immédiatement.
+

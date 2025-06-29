@@ -6,6 +6,7 @@ locale: fr
 
 # Mafé
 
+
 ## Ingredients
 
 - 2&nbsp;c. à s. concentré de tomate
@@ -25,6 +26,7 @@ locale: fr
 - 1&nbsp;litre eau
 - 4&nbsp;grosses c. à s. pâte d'arachide
 
+
 ## Steps
 
 Faire frire dans une marmite : 2&nbsp;c. à s. concentré de tomate, 1&nbsp;oignon, 4&nbsp;c. à s. huile d'arachide, 1&nbsp;c. à s. netétou.
@@ -38,3 +40,4 @@ Laisser mijoter 1&nbsp;h à feu doux.
 Déguster avec du riz.
 
 Notes : remplacer le netétou par du miso ou un bouillon cube, remplacer les gombos par des haricots verts frais.
+

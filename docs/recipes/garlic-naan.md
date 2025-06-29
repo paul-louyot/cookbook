@@ -4,6 +4,7 @@ title: Garlic naan
 
 # Garlic naan
 
+
 ## Ingredients
 
 - 475&nbsp;g flour
@@ -16,6 +17,7 @@ title: Garlic naan
 - 1&nbsp;egg
 - 2&nbsp;tablespoons oil
 - 2&nbsp;garlic cloves
+
 
 ## Steps
 
@@ -36,3 +38,4 @@ Roll each ball into a flat oval.
 Bake each until naan are cooked through, puffed up, and golden with browned spots, about 4&nbsp;minutes.
 
 <!
+
