@@ -1,0 +1,40 @@
+import { execSync } from 'child_process';
+import { resolve } from 'path';
+import fs from 'fs';
+
+const COOK_DIR = resolve('./docs/cook');
+const SCRIPT = resolve('./cook-to-md.mjs');
+
+export default {
+  vite: {
+    plugins: [
+      {
+        name: 'cooklang-processor',
+        apply: 'build', // triggers before build
+        buildStart() {
+          try {
+            console.log('[cooklang] Processing recipes...');
+            execSync(`node ${SCRIPT}`, { stdio: 'inherit' });
+            console.log('[cooklang] Done.');
+          } catch (e) {
+            console.error('[cooklang] Build error:', e.message);
+          }
+        },
+        configureServer(server) {
+          // Watch in dev mode
+          fs.watch(COOK_DIR, { recursive: true }, (eventType, filename) => {
+            if (filename?.endsWith('.cook')) {
+              console.log(`[cooklang] Detected change in ${filename}, converting...`);
+              try {
+                execSync(`node ${SCRIPT}`, { stdio: 'inherit' });
+                server.ws.send({ type: 'full-reload' });
+              } catch (e) {
+                console.error('[cooklang] Dev error:', e.message);
+              }
+            }
+          });
+        }
+      }
+    ]
+  }
+};

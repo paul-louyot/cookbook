@@ -1,18 +1,20 @@
-import { defineConfig } from "vitepress";
+import {defineConfig} from "vitepress";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Paul's recipes",
   // description: "blah",
+  head: [["link", {rel: "icon", href: "/favicon.svg", type: "image/svg+xml"}]],
 
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    aside: false,
     // search: {
     //   provider: 'local'
     // },
     nav: [
-      { text: "Home", link: "/" },
-      { text: "Recipes", link: "/recipes" },
+      {text: "About", link: "/about"},
+      // { text: "Recipes", link: "/recipes" },
     ],
     // sidebar: [
     //   {
