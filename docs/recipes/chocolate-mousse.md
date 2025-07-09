@@ -1,6 +1,7 @@
 ---
 url: https://food52.com/recipes/16044-herve-this-chocolate-mousse
 title: Chocolate mousse
+servings: 4
 ---
 
 # Chocolate mousse
