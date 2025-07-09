@@ -4,7 +4,8 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "copy-prompt": "pbcopy < fr_prompt.md"
+    "copy-prompt": "pbcopy < fr_prompt.md",
+    "deploy": "netlify deploy --prod"
   },
   "type": "module",
   "devDependencies": {

@@ -1,3 +1,7 @@
+---
+locale: fr
+url: https://l-herboriste.com/comment-faire-une-creme-glacee-vegane-a-la-sorbetiere/
+---
 
 
 
