@@ -5,8 +5,10 @@
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
     "copy-prompt": "pbcopy < fr_prompt.md",
+    "build-and-preview": "vitepress build docs && vitepress preview docs",
     "deploy": "netlify deploy --prod"
   },
+  "license": "MIT",
   "type": "module",
   "devDependencies": {
     "@cooklang/cooklang-ts": "^1.2.7",
