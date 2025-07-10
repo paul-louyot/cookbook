@@ -3,7 +3,8 @@ import {defineConfig} from "vitepress";
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Paul's recipes",
-  // description: "blah",
+  description: "🥣",
+  cleanUrls: true,
   head: [["link", {rel: "icon", href: "/favicon.svg", type: "image/svg+xml"}]],
 
   themeConfig: {
